@@ -1,11 +1,10 @@
 import requests
 from django.shortcuts import render
-
+from config import token
 
 def hh_metro(request):
     result = requests.get('https://api.hh.ru/metro/1').json()
-    # print(result)
-    auth = requests.get('https://hh.ru/oauth/authorize?response_type=code&client_id=token')
+    auth = requests.get('https://hh.ru/oauth/authorize?response_type=code&client_id={}'.format(token))
     result_from_auth = requests.get('https://api.hh.ru/metro/1').json()
 
     new = []
